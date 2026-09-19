@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le répertoire — Dominique Deffis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --oyster: #E8E4DB;
+    --oyster-deep: #DAD4C8;
+    --prune: #3A222B;
+    --prune-soft: #5E4550;
+    --brass: #9A7B45;
+    --ink: #241B20;
+    --paper: #F4F1EB;
+    --rule: rgba(58,34,43,.22);
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --oyster: #1B1518;
+      --oyster-deep: #241C20;
+      --prune: #EDE6DD;
+      --prune-soft: #C0B2B8;
+      --brass: #C2A063;
+      --ink: #EDE6DD;
+      --paper: #131013;
+      --rule: rgba(237,230,221,.22);
+    }
+  }
+  :root[data-theme="dark"] {
+    --oyster: #1B1518;
+    --oyster-deep: #241C20;
+    --prune: #EDE6DD;
+    --prune-soft: #C0B2B8;
+    --brass: #C2A063;
+    --ink: #EDE6DD;
+    --paper: #131013;
+    --rule: rgba(237,230,221,.22);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Jost, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+  .wrap { width: min(1140px, 100% - 2.5rem); margin-inline: auto; }
+
+  h1, h2, h3, .serif {
+    font-family: "Bodoni Moda", Didot, "Bodoni MT", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0;
+  }
+
+  /* ---------- masthead ---------- */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding: 1rem 0; }
+  .lang { display: flex; gap: .5rem; align-items: center; font-size: .82rem; letter-spacing: .06em; }
+  .lang button {
+    background: none; border: none; padding: .2rem .1rem; cursor: pointer;
+    font: inherit; color: var(--prune-soft); letter-spacing: .06em;
+  }
+  .lang button[aria-pressed="true"] { color: var(--ink); border-bottom: 1px solid var(--brass); }
+  .wordmark {
+    font-family: "Bodoni Moda", Didot, Georgia, serif;
+    font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+    letter-spacing: .16em; text-decoration: none; text-align: center; white-space: nowrap;
+  }
+  .nav { display: flex; gap: 1.6rem; justify-content: flex-end; font-size: .88rem; letter-spacing: .04em; }
+  .nav a { text-decoration: none; color: var(--prune-soft); }
+  .nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+  @media (max-width: 760px) { .nav { display: none; } .top .wrap { grid-template-columns: 1fr auto 1fr; } }
+
+  /* ---------- page header ---------- */
+  .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 0; text-align: center; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 5.4rem);
+    letter-spacing: -.01em;
+    max-width: 18ch; margin-inline: auto;
+  }
+  .hero h1 em { font-style: italic; }
+  .hero .lede {
+    max-width: 46ch; margin: 1.8rem auto 0;
+    font-size: 1.1rem; color: var(--prune-soft);
+  }
+  .hero .cta { margin-top: 2.4rem; }
+
+  .btn {
+    display: inline-block; text-decoration: none;
+    font-family: Jost, sans-serif; font-weight: 400; font-size: .92rem; letter-spacing: .1em;
+    padding: .95rem 2.2rem; border: 1px solid var(--prune); color: var(--prune);
+    background: transparent; transition: background .25s, color .25s;
+  }
+  .btn:hover { background: var(--prune); color: var(--paper); }
+
+  /* ---------- sections ---------- */
+  section { padding: clamp(4rem, 9vw, 7rem) 0; }
+  .kicker { font-size: .8rem; letter-spacing: .18em; color: var(--brass); margin: 0 0 1.2rem; }
+  h2.big { font-size: clamp(2rem, 4.6vw, 3.2rem); max-width: 20ch; }
+  .prose { max-width: 58ch; font-size: 1.06rem; color: var(--prune-soft); }
+  .centered { text-align: center; }
+  .centered h2.big, .centered .prose { margin-inline: auto; }
+
+  /* ---------- repertoire grid ---------- */
+  .repertoire { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem 2rem; margin-top: 3.5rem; }
+  @media (max-width: 900px) { .repertoire { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .repertoire { grid-template-columns: 1fr; } }
+
+  .shot {
+    background: var(--oyster);
+    border: 1px solid var(--rule);
+    display: flex; align-items: flex-end; padding: .9rem;
+    font-size: .74rem; letter-spacing: .05em; color: var(--prune-soft);
+    position: relative; overflow: hidden;
+  }
+  .shot::before {
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(154,123,69,.09) 22px 23px);
+  }
+  .shot span { position: relative; }
+  .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shot.tint { background: var(--oyster-deep); }
+  .shot.dark { background: var(--prune); color: rgba(244,241,235,.72); }
+  .shot.dark::before { background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(194,160,99,.16) 22px 23px); }
+
+  .dish-photo { aspect-ratio: 4/3; }
+  .dish h3 { font-size: 1.4rem; margin-top: 1.2rem; }
+  .dish .kicker { margin: 0 0 .4rem; }
+  .dish p.desc { margin: .6rem 0 0; color: var(--prune-soft); font-size: .98rem; }
+
+  .note { max-width: 58ch; margin: 4rem auto 0; text-align: center; font-size: .98rem; color: var(--prune-soft); }
+  .note a { border-bottom: 1px solid var(--brass); text-decoration: none; padding-bottom: 2px; }
+
+  footer { padding: 2.6rem 0; font-size: .82rem; letter-spacing: .04em; color: var(--prune-soft); border-top: 1px solid var(--rule); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+  footer .credits { width: 100%; margin-top: 1.2rem; font-size: .74rem; }
+  footer .credits summary { cursor: pointer; color: var(--prune-soft); }
+  footer .credits ul { margin: .6rem 0 0; padding-left: 1.2rem; }
+  footer .credits a { color: inherit; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="lang">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="wordmark" href="index.html#top">DOMINIQUE DEFFIS</a>
+    <nav class="nav">
+      <a href="index.html#ateliers" data-en="The workshops">Les ateliers</a>
+      <a href="recipes.html" aria-current="page" data-en="The repertoire">Le répertoire</a>
+      <a href="index.html#calendrier" data-en="Calendar">Calendrier</a>
+      <a href="index.html#reserver" data-en="Reserve">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <p class="kicker" data-en="The repertoire">Le répertoire</p>
+    <h1 data-en="Everything that can come out of that kitchen">Tout ce qui peut sortir de cette cuisine</h1>
+    <p class="lede" data-en="The calendar only shows what's scheduled next. This is the wider list — thirty years of classical French technique, drawn on for every workshop. Ask about any dish when you write.">Le calendrier n'affiche que les prochaines séances. Voici la liste complète : trente ans de technique française classique, dans laquelle chaque atelier vient puiser. Demandez n'importe lequel de ces plats en écrivant.</p>
+  </div>
+</div>
+
+<section id="plats">
+  <div class="wrap">
+    <div class="repertoire">
+
+      <article class="dish">
+        <div class="shot dish-photo"><img src="assets/images/dish-pate-en-croute.jpg" alt="Le pâté en croûte, tranché pour montrer les couches" data-alt-en="The pâté en croûte, sliced to show the layers"></div>
+        <p class="kicker" data-en="Pastry and terrine">Pâtisserie et terrine</p>
+        <h3 data-en="Game pâté en croûte, Cumberland sauce">Pâté en croûte de gibier, sauce Cumberland</h3>
+        <p class="desc" data-en="Hand-raised pastry, a forcemeat that has to be seasoned blind, and a jelly that sets or the whole thing is wasted.">Pâte montée à la main, farce qu'il faut assaisonner à l'aveugle, et une gelée qui doit prendre — sinon tout est perdu.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot tint dish-photo"><img src="assets/images/dish-quenelles.jpg" alt="Une quenelle, nappée de sauce Nantua" data-alt-en="A quenelle, coated in Nantua sauce"></div>
+        <p class="kicker" data-en="River fish">Poisson de rivière</p>
+        <h3 data-en="Pike quenelles, Nantua sauce">Quenelles de brochet, sauce Nantua</h3>
+        <p class="desc" data-en="A panade worked by hand until it holds air, then a crayfish butter that separates if you rush it.">Une panade travaillée à la main jusqu'à ce qu'elle retienne l'air, puis un beurre d'écrevisses qui tranche si l'on va trop vite.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot dark dish-photo"><img src="assets/images/dish-homard.jpg" alt="Le homard à l'américaine, dressé" data-alt-en="The lobster à l'américaine, plated"></div>
+        <p class="kicker" data-en="Shellfish">Crustacé</p>
+        <h3 data-en="Lobster à l'américaine, pilaf rice">Homard à l'américaine, riz pilaf</h3>
+        <p class="desc" data-en="The lobster is the easy part. The sauce, built on its own shells and reduced twice, is the actual lesson.">Le homard est la partie facile. La sauce, montée sur ses propres carcasses et réduite deux fois, est la vraie leçon.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot tint dish-photo"><img src="assets/images/dish-souffle.jpg" alt="Un soufflé au moment où il dépasse le moule" data-alt-en="A soufflé at the moment it clears the ramekin"></div>
+        <p class="kicker" data-en="Dessert">Dessert</p>
+        <h3 data-en="Grand Marnier soufflé">Soufflé au Grand Marnier</h3>
+        <p class="desc" data-en="Six minutes from oven to table, no exceptions. We time it so nobody is still plating when it's ready.">Six minutes du four à la table, sans exception. On chronomètre pour que personne ne soit encore au dressage.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot dish-photo"><img src="assets/images/dish-saint-honore.jpg" alt="Un Saint-Honoré, chantilly et fruits rouges" data-alt-en="A Saint-Honoré, whipped cream and red fruit"></div>
+        <p class="kicker" data-en="Pâtisserie">Pâtisserie</p>
+        <h3 data-en="Saint-Honoré">Saint-Honoré</h3>
+        <p class="desc" data-en="Puff pastry, choux, caramel and a Chiboust cream in one dessert — the one that punishes any shortcut taken earlier in the day.">Pâte feuilletée, pâte à choux, caramel et crème Chiboust dans un seul dessert — celui qui sanctionne tout raccourci pris plus tôt dans la journée.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot dark dish-photo"><img src="assets/images/dish-canard.jpg" alt="Le canard à l'orange, tranché, dressé avec du riz" data-alt-en="The duck à l'orange, sliced, plated with rice"></div>
+        <p class="kicker" data-en="Poultry">Volaille</p>
+        <h3 data-en="Duck à l'orange">Canard à l'orange</h3>
+        <p class="desc" data-en="A bigarade sauce built the classical way — caramel, vinegar, orange — and a bird cooked so the skin is still worth eating.">Une sauce bigarade montée à l'ancienne — caramel, vinaigre, orange — et une volaille cuite pour que la peau reste digne d'être mangée.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot tint dish-photo"><img src="assets/images/dish-blanquette.jpg" alt="Le veau qui mijote dans la sauce, avec ses carottes" data-alt-en="The veal simmering in the sauce, with its carrots"></div>
+        <p class="kicker" data-en="Meat">Viande</p>
+        <h3 data-en="Blanquette de veau, the old way">Blanquette de veau à l'ancienne</h3>
+        <p class="desc" data-en="The dish everyone thinks they know. Done properly, with a liaison of egg yolk and cream that most recipes have given up on.">Le plat que tout le monde croit connaître. Fait correctement, avec une liaison au jaune d'œuf et à la crème que la plupart des recettes ont abandonnée.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot dish-photo"><img src="assets/images/dish-vol-au-vent.jpg" alt="Un vol-au-vent, pâte feuilletée bien levée" data-alt-en="A vol-au-vent, the puff pastry risen straight"></div>
+        <p class="kicker" data-en="Pastry and offal">Pâtisserie et abats</p>
+        <h3 data-en="Vol-au-vent financière">Vol-au-vent financière</h3>
+        <p class="desc" data-en="Puff pastry that has to rise straight, filled with sweetbreads, cockscombs and quenelles — a dish few kitchens still attempt in full.">Une pâte feuilletée qui doit lever droite, garnie de ris de veau, de crêtes et de quenelles — un plat que peu de cuisines tentent encore dans sa forme complète.</p>
+      </article>
+
+      <article class="dish">
+        <div class="shot dark dish-photo"><img src="assets/images/dish-tarte-tatin.jpg" alt="La tarte Tatin, dressée" data-alt-en="The tarte Tatin, plated"></div>
+        <p class="kicker" data-en="Dessert">Dessert</p>
+        <h3 data-en="Tarte Tatin">Tarte Tatin</h3>
+        <p class="desc" data-en="A caramel taken further than feels safe, and a turn-out that either holds or doesn't — there's no fixing it after the fact.">Un caramel poussé plus loin que ce qui semble prudent, et un démoulage qui tient ou qui ne tient pas — impossible de rattraper après coup.</p>
+      </article>
+
+    </div>
+
+    <p class="note" data-en="This list changes as the season does. If a dish you want isn't here, write and ask — it may simply not be written down yet.">Cette liste change avec la saison. Si un plat que vous souhaitez n'y figure pas, écrivez pour demander — il n'est peut-être simplement pas encore consigné.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-en="Dominique Deffis, Paris">Dominique Deffis, Paris</span>
+    <span><a href="mailto:bonjour@dominiquedeffis.com">bonjour@dominiquedeffis.com</a></span>
+    <details class="credits">
+      <summary data-en="Photo credits">Crédits photo</summary>
+      <p data-en="Placeholder photography — generic dishes, not yet Dominique's own. To be replaced with real photography.">Photographie provisoire — plats génériques, pas encore ceux de Dominique. À remplacer par de vraies photos.</p>
+      <ul>
+        <li>Homard à l'américaine : nyaa_birdies_perch, CC BY 2.0</li>
+        <li>Saint-Honoré : Chatsam, CC BY-SA 3.0</li>
+        <li>Canard à l'orange : Arnaud 25, CC BY-SA 4.0</li>
+        <li>Blanquette de veau : Arnaud 25, CC BY-SA 4.0</li>
+        <li>Vol-au-vent : Richard N Horne, CC BY 4.0</li>
+        <li>Tarte Tatin : Joanbanjo, CC BY-SA 4.0</li>
+      </ul>
+    </details>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var currentLang = "fr";
+  var buttons = document.querySelectorAll(".lang button");
+
+  function register(root) {
+    root.querySelectorAll("[data-en]").forEach(function (n) {
+      if (!n.hasAttribute("data-fr")) n.setAttribute("data-fr", n.innerHTML);
+    });
+  }
+
+  function applyLang() {
+    document.querySelectorAll("[data-en]").forEach(function (n) {
+      var v = n.getAttribute(currentLang === "en" ? "data-en" : "data-fr");
+      if (v !== null) n.innerHTML = v;
+    });
+    document.documentElement.lang = currentLang;
+    buttons.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === currentLang));
+    });
+  }
+
+  register(document);
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      currentLang = b.getAttribute("data-lang");
+      applyLang();
+    });
+  });
+
+  applyLang();
+})();
+</script>
+
+</body>
+</html>

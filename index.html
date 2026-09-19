@@ -135,6 +135,7 @@
     background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(154,123,69,.09) 22px 23px);
   }
   .shot span { position: relative; }
+  .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .shot.tint { background: var(--oyster-deep); }
   .shot.dark { background: var(--prune); color: rgba(244,241,235,.72); }
   .shot.dark::before { background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(194,160,99,.16) 22px 23px); }
@@ -218,6 +219,10 @@
 
   footer { padding: 2.6rem 0; font-size: .82rem; letter-spacing: .04em; color: var(--prune-soft); }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+  footer .credits { width: 100%; margin-top: 1.2rem; font-size: .74rem; }
+  footer .credits summary { cursor: pointer; color: var(--prune-soft); }
+  footer .credits p { margin: .6rem 0 0; }
+  footer .credits a { color: inherit; }
 </style>
 </head>
 <body>
@@ -232,6 +237,7 @@
     <a class="wordmark" href="#top">DOMINIQUE DEFFIS</a>
     <nav class="nav">
       <a href="#ateliers" data-en="The workshops">Les ateliers</a>
+      <a href="recipes.html" data-en="The repertoire">Le répertoire</a>
       <a href="#calendrier" data-en="Calendar">Calendrier</a>
       <a href="#reserver" data-en="Reserve">Réserver</a>
     </nav>
@@ -247,13 +253,13 @@
     </div>
 
     <div class="mosaic">
-      <div class="shot m1"><span data-en="Wide shot: the kitchen mid-service, light from the window">Plan large : la cuisine en plein service, lumière de la fenêtre</span></div>
-      <div class="shot tint m2"><span data-en="Close-up: hands lattice-cutting the pastry">Gros plan : les mains sur le croisillon de la pâte</span></div>
-      <div class="shot dark m3"><span data-en="The finished pâté en croûte, sliced">Le pâté en croûte terminé, tranché</span></div>
-      <div class="shot tint m4"><span data-en="The table laid, glasses poured">La table dressée, les verres servis</span></div>
+      <div class="shot m1"><img src="assets/images/mosaic-kitchen.jpg" alt="Plan large : la cuisine en plein service, lumière de la fenêtre" data-alt-en="Wide shot: the kitchen mid-service, light from the window"></div>
+      <div class="shot tint m2"><img src="assets/images/mosaic-pastry-hands.jpg" alt="Gros plan : les mains sur le croisillon de la pâte" data-alt-en="Close-up: hands lattice-cutting the pastry"></div>
+      <div class="shot dark m3"><img src="assets/images/mosaic-pate-en-croute.jpg" alt="Le pâté en croûte terminé, tranché" data-alt-en="The finished pâté en croûte, sliced"></div>
+      <div class="shot tint m4"><img src="assets/images/mosaic-table.jpg" alt="La table dressée, les verres disposés" data-alt-en="The table laid, glasses set out"></div>
       <div class="shot m5"><span data-en="Dominique explaining to two guests">Dominique expliquant à deux convives</span></div>
-      <div class="shot dark m6"><span data-en="Detail: the soufflé coming out of the oven">Détail : le soufflé à la sortie du four</span></div>
-      <div class="shot tint m7"><span data-en="The market, early morning">Le marché, tôt le matin</span></div>
+      <div class="shot dark m6"><img src="assets/images/mosaic-souffle.jpg" alt="Détail : le soufflé, saupoudré de sucre" data-alt-en="Detail: the soufflé, dusted with sugar"></div>
+      <div class="shot tint m7"><img src="assets/images/mosaic-market.jpg" alt="Le marché, tôt le matin" data-alt-en="The market, early morning"></div>
     </div>
   </div>
 </div>
@@ -380,6 +386,10 @@
   <div class="wrap">
     <span data-en="Dominique Deffis, Paris">Dominique Deffis, Paris</span>
     <span><a href="mailto:bonjour@dominiquedeffis.com">bonjour@dominiquedeffis.com</a></span>
+    <details class="credits">
+      <summary data-en="Photo credits">Crédits photo</summary>
+      <p data-en="Market photo: Jesús Gorriti, CC BY-SA 2.0. Placeholder photography, not yet Dominique's own — see recipes page for the rest.">Photo du marché : Jesús Gorriti, CC BY-SA 2.0. Photographie provisoire, pas encore celle de Dominique — voir la page du répertoire pour les autres crédits.</p>
+    </details>
   </div>
 </footer>
 
@@ -401,12 +411,19 @@ var SHEET_CSV_URL = "";
     root.querySelectorAll("[data-en]").forEach(function (n) {
       if (!n.hasAttribute("data-fr")) n.setAttribute("data-fr", n.innerHTML);
     });
+    root.querySelectorAll("img[data-alt-en]").forEach(function (n) {
+      if (!n.hasAttribute("data-alt-fr")) n.setAttribute("data-alt-fr", n.getAttribute("alt") || "");
+    });
   }
 
   function applyLang() {
     document.querySelectorAll("[data-en]").forEach(function (n) {
       var v = n.getAttribute(currentLang === "en" ? "data-en" : "data-fr");
       if (v !== null) n.innerHTML = v;
+    });
+    document.querySelectorAll("img[data-alt-en]").forEach(function (n) {
+      var v = n.getAttribute(currentLang === "en" ? "data-alt-en" : "data-alt-fr");
+      if (v !== null) n.setAttribute("alt", v);
     });
     document.documentElement.lang = currentLang;
     buttons.forEach(function (b) {
