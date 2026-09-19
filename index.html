@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dominique Deffis — Ateliers de cuisine, Paris</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --oyster: #E8E4DB;
+    --oyster-deep: #DAD4C8;
+    --prune: #3A222B;
+    --prune-soft: #5E4550;
+    --brass: #9A7B45;
+    --ink: #241B20;
+    --paper: #F4F1EB;
+    --rule: rgba(58,34,43,.22);
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --oyster: #1B1518;
+      --oyster-deep: #241C20;
+      --prune: #EDE6DD;
+      --prune-soft: #C0B2B8;
+      --brass: #C2A063;
+      --ink: #EDE6DD;
+      --paper: #131013;
+      --rule: rgba(237,230,221,.22);
+    }
+  }
+  :root[data-theme="dark"] {
+    --oyster: #1B1518;
+    --oyster-deep: #241C20;
+    --prune: #EDE6DD;
+    --prune-soft: #C0B2B8;
+    --brass: #C2A063;
+    --ink: #EDE6DD;
+    --paper: #131013;
+    --rule: rgba(237,230,221,.22);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Jost, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+  .wrap { width: min(1140px, 100% - 2.5rem); margin-inline: auto; }
+
+  h1, h2, h3, .serif {
+    font-family: "Bodoni Moda", Didot, "Bodoni MT", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0;
+  }
+
+  /* ---------- masthead ---------- */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding: 1rem 0; }
+  .lang { display: flex; gap: .5rem; align-items: center; font-size: .82rem; letter-spacing: .06em; }
+  .lang button {
+    background: none; border: none; padding: .2rem .1rem; cursor: pointer;
+    font: inherit; color: var(--prune-soft); letter-spacing: .06em;
+  }
+  .lang button[aria-pressed="true"] { color: var(--ink); border-bottom: 1px solid var(--brass); }
+  .wordmark {
+    font-family: "Bodoni Moda", Didot, Georgia, serif;
+    font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+    letter-spacing: .16em; text-decoration: none; text-align: center; white-space: nowrap;
+  }
+  .nav { display: flex; gap: 1.6rem; justify-content: flex-end; font-size: .88rem; letter-spacing: .04em; }
+  .nav a { text-decoration: none; color: var(--prune-soft); }
+  .nav a:hover { color: var(--ink); }
+  @media (max-width: 760px) { .nav { display: none; } .top .wrap { grid-template-columns: 1fr auto 1fr; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 0; text-align: center; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 5.4rem);
+    letter-spacing: -.01em;
+    max-width: 16ch; margin-inline: auto;
+  }
+  .hero h1 em { font-style: italic; }
+  .hero .lede {
+    max-width: 46ch; margin: 1.8rem auto 0;
+    font-size: 1.1rem; color: var(--prune-soft);
+  }
+  .hero .cta { margin-top: 2.4rem; }
+
+  .btn {
+    display: inline-block; text-decoration: none;
+    font-family: Jost, sans-serif; font-weight: 400; font-size: .92rem; letter-spacing: .1em;
+    padding: .95rem 2.2rem; border: 1px solid var(--prune); color: var(--prune);
+    background: transparent; transition: background .25s, color .25s;
+  }
+  .btn:hover { background: var(--prune); color: var(--paper); }
+  .btn.solid { background: var(--prune); color: var(--paper); }
+  .btn.solid:hover { background: transparent; color: var(--prune); }
+
+  /* ---------- mosaic ---------- */
+  .mosaic {
+    margin-top: clamp(3rem, 7vw, 5.5rem);
+    display: grid; gap: 10px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 9vw;
+  }
+  @media (max-width: 860px) { .mosaic { grid-auto-rows: 22vw; } }
+  .shot {
+    background: var(--oyster);
+    border: 1px solid var(--rule);
+    display: flex; align-items: flex-end; padding: .9rem;
+    font-size: .74rem; letter-spacing: .05em; color: var(--prune-soft);
+    position: relative; overflow: hidden;
+  }
+  .shot::before {
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(154,123,69,.09) 22px 23px);
+  }
+  .shot span { position: relative; }
+  .shot.tint { background: var(--oyster-deep); }
+  .shot.dark { background: var(--prune); color: rgba(244,241,235,.72); }
+  .shot.dark::before { background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(194,160,99,.16) 22px 23px); }
+
+  .m1 { grid-column: span 5; grid-row: span 3; }
+  .m2 { grid-column: span 4; grid-row: span 2; }
+  .m3 { grid-column: span 3; grid-row: span 3; }
+  .m4 { grid-column: span 4; grid-row: span 2; }
+  .m5 { grid-column: span 5; grid-row: span 2; }
+  .m6 { grid-column: span 4; grid-row: span 2; }
+  .m7 { grid-column: span 3; grid-row: span 2; }
+  @media (max-width: 860px) {
+    .m1 { grid-column: span 12; grid-row: span 2; }
+    .m2, .m3, .m4, .m5, .m6, .m7 { grid-column: span 6; grid-row: span 1; }
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: clamp(4rem, 9vw, 7rem) 0; }
+  .kicker { font-size: .8rem; letter-spacing: .18em; color: var(--brass); margin: 0 0 1.2rem; }
+  h2.big { font-size: clamp(2rem, 4.6vw, 3.2rem); max-width: 20ch; }
+  h2.big em { font-style: italic; }
+  .prose { max-width: 58ch; font-size: 1.06rem; color: var(--prune-soft); }
+  .prose p + p { margin-top: 1.2rem; }
+  .centered { text-align: center; }
+  .centered h2.big, .centered .prose { margin-inline: auto; }
+
+  /* ateliers */
+  .ateliers { background: var(--oyster); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .atelier {
+    display: grid; grid-template-columns: 1fr 1.6fr auto; gap: 2.5rem; align-items: baseline;
+    padding: 2.2rem 0; border-top: 1px solid var(--rule);
+  }
+  .atelier:first-of-type { border-top: none; }
+  .atelier h3 { font-size: 1.7rem; }
+  .atelier .meta { font-size: .85rem; letter-spacing: .04em; color: var(--brass); margin-top: .5rem; }
+  .atelier p { margin: 0; color: var(--prune-soft); font-size: 1rem; }
+  .tarif { font-family: "Bodoni Moda", Didot, Georgia, serif; font-size: 1.6rem; white-space: nowrap; text-align: right; }
+  .tarif small { display: block; font-family: Jost, sans-serif; font-size: .78rem; letter-spacing: .05em; color: var(--prune-soft); font-weight: 300; }
+  @media (max-width: 900px) {
+    .atelier { grid-template-columns: 1fr; gap: .9rem; }
+    .tarif { text-align: left; font-size: 1.4rem; }
+  }
+
+  /* calendrier */
+  .cal { max-width: 720px; margin-inline: auto; margin-top: 3rem; }
+  .cal li { list-style: none; display: grid; grid-template-columns: 11rem 1fr auto; gap: 1.5rem; align-items: baseline; padding: 1.3rem 0; border-top: 1px solid var(--rule); }
+  .cal ul { margin: 0; padding: 0; }
+  .cal .d { font-family: "Bodoni Moda", Didot, Georgia, serif; font-size: 1.05rem; }
+  .cal .plat { color: var(--prune-soft); font-size: .98rem; }
+  .cal .etat { font-size: .78rem; letter-spacing: .08em; color: var(--brass); white-space: nowrap; }
+  .cal .etat.complet { color: var(--prune-soft); }
+  @media (max-width: 720px) {
+    .cal li { grid-template-columns: 1fr; gap: .35rem; }
+  }
+
+  /* portrait */
+  .about { display: grid; grid-template-columns: 420px 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  @media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
+  .portrait {
+    aspect-ratio: 4/5; border: 1px solid var(--rule); background: var(--oyster-deep);
+    display: flex; align-items: flex-end; padding: 1.1rem; font-size: .76rem; letter-spacing: .05em;
+    color: var(--prune-soft); position: relative; overflow: hidden;
+  }
+  .portrait::before {
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, transparent 0 26px, rgba(154,123,69,.1) 26px 27px);
+  }
+  .portrait span { position: relative; }
+
+  /* reserver */
+  .book { background: var(--prune); color: var(--paper); text-align: center; }
+  :root:not([data-theme="light"]) .book { color: var(--paper); }
+  .book h2, .book .kicker { color: inherit; }
+  .book .kicker { color: var(--brass); }
+  .book .prose { color: rgba(244,241,235,.75); margin-inline: auto; }
+  :root:not([data-theme="light"]) .book .prose { color: rgba(19,16,19,.72); }
+  .book .btn { border-color: var(--paper); color: var(--paper); }
+  .book .btn:hover { background: var(--paper); color: var(--prune); }
+  .book .contact { margin-top: 2.6rem; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; font-size: .95rem; }
+  .book .contact a { text-decoration: none; border-bottom: 1px solid var(--brass); padding-bottom: 2px; }
+
+  footer { padding: 2.6rem 0; font-size: .82rem; letter-spacing: .04em; color: var(--prune-soft); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="lang">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="wordmark" href="#top">DOMINIQUE DEFFIS</a>
+    <nav class="nav">
+      <a href="#ateliers" data-en="The workshops">Les ateliers</a>
+      <a href="#calendrier" data-en="Calendar">Calendrier</a>
+      <a href="#reserver" data-en="Reserve">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <h1 data-en="The dishes Paris no longer <em>dares</em> to cook">Les plats que Paris n'ose plus <em>cuisiner</em></h1>
+    <p class="lede" data-en="Six people, one kitchen in the 7th arrondissement, and a day given over to pâté en croûte, quenelles de brochet or a Grand Marnier soufflé. Nothing is prepared in advance.">Six personnes, une cuisine du 7<sup>e</sup> arrondissement et une journée entière consacrée au pâté en croûte, aux quenelles de brochet ou au soufflé au Grand Marnier. Rien n'est préparé à l'avance.</p>
+    <div class="cta">
+      <a class="btn solid" href="#reserver" data-en="Request a place">Demander une place</a>
+    </div>
+
+    <div class="mosaic">
+      <div class="shot m1"><span data-en="Wide shot: the kitchen mid-service, light from the window">Plan large : la cuisine en plein service, lumière de la fenêtre</span></div>
+      <div class="shot tint m2"><span data-en="Close-up: hands lattice-cutting the pastry">Gros plan : les mains sur le croisillon de la pâte</span></div>
+      <div class="shot dark m3"><span data-en="The finished pâté en croûte, sliced">Le pâté en croûte terminé, tranché</span></div>
+      <div class="shot tint m4"><span data-en="The table laid, glasses poured">La table dressée, les verres servis</span></div>
+      <div class="shot m5"><span data-en="Dominique explaining to two guests">Dominique expliquant à deux convives</span></div>
+      <div class="shot dark m6"><span data-en="Detail: the soufflé coming out of the oven">Détail : le soufflé à la sortie du four</span></div>
+      <div class="shot tint m7"><span data-en="The market, early morning">Le marché, tôt le matin</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="methode">
+  <div class="wrap centered">
+    <p class="kicker" data-en="The method">La méthode</p>
+    <h2 class="big" data-en="Four hours on one dish, and you never make it badly again">Quatre heures sur un seul plat, et on ne le rate plus jamais</h2>
+    <div class="prose" style="margin-top:1.6rem">
+      <p data-en="These workshops are built around dishes that intimidate people: the ones with twelve steps, a temperature that forgives nothing, and a reputation for going wrong. We take one, break it down, and do it properly — including the parts most recipes quietly skip.">Ces ateliers sont construits autour des plats qui intimident : ceux qui comptent douze étapes, une température qui ne pardonne rien et une réputation de plat raté. On en prend un, on le décompose et on le fait correctement — y compris les étapes que la plupart des recettes passent sous silence.</p>
+      <p data-en="Six people maximum, each with their own station. English and French spoken throughout. You leave with the recipe, the technique, and dinner already eaten.">Six personnes au maximum, chacune à son poste. Les ateliers se déroulent en français et en anglais. Vous repartez avec la recette, la technique et le dîner déjà partagé.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ateliers" id="ateliers">
+  <div class="wrap">
+    <p class="kicker" data-en="The workshops">Les ateliers</p>
+    <h2 class="big" data-en="Three ways to spend the day">Trois façons de passer la journée</h2>
+
+    <div style="margin-top:3rem">
+      <div class="atelier">
+        <div>
+          <h3 data-en="The classics">Le grand classique</h3>
+          <div class="meta" data-en="6 people · 5 hours · dinner included">6 personnes · 5 heures · dîner compris</div>
+        </div>
+        <p data-en="One monumental dish from start to finish: pâté en croûte, lobster à l'américaine, quenelles with Nantua sauce. The whole day on a single preparation, and the table at the end.">Un plat monumental du début à la fin : pâté en croûte, homard à l'américaine, quenelles sauce Nantua. La journée entière sur une seule préparation, et la table pour finir.</p>
+        <div class="tarif">450 €<small data-en="per person">par personne</small></div>
+      </div>
+
+      <div class="atelier">
+        <div>
+          <h3 data-en="Market and kitchen">Marché et cuisine</h3>
+          <div class="meta" data-en="6 people · 7 hours · from 8am">6 personnes · 7 heures · dès 8 h</div>
+        </div>
+        <p data-en="We start at the market at eight, choose the day's menu in front of the stalls, and cook whatever was worth buying. The one to take if you want to understand how a Parisian kitchen decides.">On commence au marché à huit heures, on choisit le menu devant les étals et on cuisine ce qui méritait d'être acheté. L'atelier à prendre pour comprendre comment se décide une cuisine parisienne.</p>
+        <div class="tarif">650 €<small data-en="per person">par personne</small></div>
+      </div>
+
+      <div class="atelier">
+        <div>
+          <h3 data-en="Private table">Table privée</h3>
+          <div class="meta" data-en="up to 8 people · menu agreed in advance">jusqu'à 8 personnes · menu convenu à l'avance</div>
+        </div>
+        <p data-en="Your own group, your own menu, in this kitchen or in yours. Built around the occasion — a birthday, a delegation, a family passing through Paris for the week.">Votre groupe, votre menu, dans cette cuisine ou dans la vôtre. Construit autour de l'occasion : un anniversaire, une délégation, une famille de passage à Paris pour la semaine.</p>
+        <div class="tarif">3 200 €<small data-en="the workshop">l'atelier</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calendrier">
+  <div class="wrap centered">
+    <p class="kicker" data-en="Calendar">Calendrier</p>
+    <h2 class="big" data-en="Autumn 2026">Automne 2026</h2>
+
+    <div class="cal" style="text-align:left">
+      <ul id="cal-list">
+        <li>
+          <span class="d" data-en="Thursday 8 October">Jeudi 8 octobre</span>
+          <span class="plat" data-en="Game pâté en croûte, Cumberland sauce">Pâté en croûte de gibier, sauce Cumberland</span>
+          <span class="etat complet" data-en="Full">Complet</span>
+        </li>
+        <li>
+          <span class="d" data-en="Saturday 17 October">Samedi 17 octobre</span>
+          <span class="plat" data-en="Pike quenelles, Nantua sauce">Quenelles de brochet, sauce Nantua</span>
+          <span class="etat" data-en="2 places">2 places</span>
+        </li>
+        <li>
+          <span class="d" data-en="Thursday 29 October">Jeudi 29 octobre</span>
+          <span class="plat" data-en="Lobster à l'américaine, pilaf rice">Homard à l'américaine, riz pilaf</span>
+          <span class="etat" data-en="4 places">4 places</span>
+        </li>
+        <li>
+          <span class="d" data-en="Saturday 14 November">Samedi 14 novembre</span>
+          <span class="plat" data-en="Saint-Honoré and Grand Marnier soufflé">Saint-Honoré et soufflé au Grand Marnier</span>
+          <span class="etat" data-en="6 places">6 places</span>
+        </li>
+        <li>
+          <span class="d" data-en="Thursday 3 December">Jeudi 3 décembre</span>
+          <span class="plat" data-en="Market and kitchen: the festive table">Marché et cuisine : la table de fête</span>
+          <span class="etat" data-en="6 places">6 places</span>
+        </li>
+      </ul>
+      <p id="cal-note" hidden style="margin-top:1.5rem; font-size:.9rem; color:var(--prune-soft)"
+         data-en="Dates shown may not be current. Please write to confirm availability.">Les dates affichées peuvent ne pas être à jour. Écrivez-moi pour confirmer les disponibilités.</p>
+    </div>
+  </div>
+</section>
+
+<section id="dominique" style="background:var(--oyster); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule)">
+  <div class="wrap about">
+    <div class="portrait"><span data-en="Portrait of Dominique in the kitchen, vertical">Portrait de Dominique en cuisine, format vertical</span></div>
+    <div>
+      <p class="kicker" data-en="Who is teaching">Qui vous reçoit</p>
+      <h2 class="big" data-en="Dominique Deffis">Dominique Deffis</h2>
+      <div class="prose" style="margin-top:1.4rem">
+        <p data-en="Thirty years in Parisian kitchens, and fifteen teaching in this one. Trained in the classical repertoire and still faithful to it — the sauces, the pastry, the things that take time and are worth it.">Trente ans dans les cuisines parisiennes, dont quinze à enseigner dans celle-ci. Formée au répertoire classique et fidèle à ce répertoire : les sauces, les pâtes, tout ce qui demande du temps et le mérite.</p>
+        <p data-en="Guests come from the neighbourhood and from a long way further. The workshop runs in French and in English, and nobody has ever been left standing at the back.">Les convives viennent du quartier et de bien plus loin. L'atelier se tient en français et en anglais, et personne n'est jamais resté spectateur au fond de la pièce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="reserver">
+  <div class="wrap">
+    <p class="kicker" data-en="Reserve">Réserver</p>
+    <h2 class="big centered" style="margin-inline:auto" data-en="Places are held by request">Les places se réservent sur demande</h2>
+    <div class="prose" style="margin-top:1.4rem">
+      <p data-en="Tell me which date interests you and how many of you there are. I confirm within the day and send the address, along with anything I need to know about allergies or dietary requirements.">Indiquez-moi la date qui vous intéresse et le nombre de convives. Je confirme dans la journée et vous transmets l'adresse, ainsi que ce que je dois savoir sur les allergies ou les régimes particuliers.</p>
+    </div>
+    <div style="margin-top:2.2rem">
+      <a class="btn" href="mailto:bonjour@dominiquedeffis.com" data-en="Write to Dominique">Écrire à Dominique</a>
+    </div>
+    <div class="contact">
+      <a href="mailto:bonjour@dominiquedeffis.com">bonjour@dominiquedeffis.com</a>
+      <a href="tel:+33100000000">+33 1 00 00 00 00</a>
+      <span data-en="7th arrondissement, Paris">7<sup>e</sup> arrondissement, Paris</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-en="Dominique Deffis, Paris">Dominique Deffis, Paris</span>
+    <span><a href="mailto:bonjour@dominiquedeffis.com">bonjour@dominiquedeffis.com</a></span>
+  </div>
+</footer>
+
+<script>
+/* ------------------------------------------------------------------
+   CALENDAR SOURCE
+   Paste the "publish to web" CSV link of the Google Sheet here.
+   Leave it empty and the page keeps the dates written in the HTML.
+   Sheet columns, in this order, with a header row:
+   date (YYYY-MM-DD) | plat_fr | plat_en | places | reservees
+------------------------------------------------------------------- */
+var SHEET_CSV_URL = "";
+
+(function () {
+  var currentLang = "fr";
+  var buttons = document.querySelectorAll(".lang button");
+
+  function register(root) {
+    root.querySelectorAll("[data-en]").forEach(function (n) {
+      if (!n.hasAttribute("data-fr")) n.setAttribute("data-fr", n.innerHTML);
+    });
+  }
+
+  function applyLang() {
+    document.querySelectorAll("[data-en]").forEach(function (n) {
+      var v = n.getAttribute(currentLang === "en" ? "data-en" : "data-fr");
+      if (v !== null) n.innerHTML = v;
+    });
+    document.documentElement.lang = currentLang;
+    buttons.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === currentLang));
+    });
+  }
+
+  register(document);
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      currentLang = b.getAttribute("data-lang");
+      applyLang();
+    });
+  });
+
+  /* ---------- CSV ---------- */
+  function parseCSV(text) {
+    var rows = [], row = [], field = "", inQuotes = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (inQuotes) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i++; } else { inQuotes = false; }
+        } else { field += c; }
+      } else if (c === '"') { inQuotes = true;
+      } else if (c === ",") { row.push(field); field = "";
+      } else if (c === "\n") { row.push(field); rows.push(row); row = []; field = "";
+      } else if (c !== "\r") { field += c; }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function fmtDate(iso, lang) {
+    var parts = iso.split("-");
+    var d = new Date(Date.UTC(+parts[0], +parts[1] - 1, +parts[2]));
+    if (isNaN(d)) return iso;
+    var s = new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "fr-FR",
+      { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }).format(d);
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  function render(rows) {
+    var list = document.getElementById("cal-list");
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+
+    var items = rows
+      .map(function (r) {
+        return {
+          iso: (r[0] || "").trim(),
+          fr: (r[1] || "").trim(),
+          en: (r[2] || "").trim(),
+          total: parseInt(r[3], 10),
+          taken: parseInt(r[4], 10)
+        };
+      })
+      .filter(function (x) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(x.iso)) return false;
+        var d = new Date(x.iso + "T00:00:00");
+        return !isNaN(d) && d >= today;
+      })
+      .sort(function (a, b) { return a.iso < b.iso ? -1 : 1; });
+
+    if (!items.length) return false;
+
+    list.innerHTML = items.map(function (x) {
+      var left = (isFinite(x.total) && isFinite(x.taken)) ? Math.max(0, x.total - x.taken) : null;
+      var etatFr, etatEn, cls = "etat";
+      if (left === null) { etatFr = ""; etatEn = ""; }
+      else if (left === 0) { etatFr = "Complet"; etatEn = "Full"; cls += " complet"; }
+      else if (left === 1) { etatFr = "1 place"; etatEn = "1 place"; }
+      else { etatFr = left + " places"; etatEn = left + " places"; }
+
+      return '<li>' +
+        '<span class="d" data-fr="' + esc(fmtDate(x.iso, "fr")) + '" data-en="' + esc(fmtDate(x.iso, "en")) + '">' + esc(fmtDate(x.iso, "fr")) + '</span>' +
+        '<span class="plat" data-fr="' + esc(x.fr) + '" data-en="' + esc(x.en || x.fr) + '">' + esc(x.fr) + '</span>' +
+        '<span class="' + cls + '" data-fr="' + esc(etatFr) + '" data-en="' + esc(etatEn) + '">' + esc(etatFr) + '</span>' +
+        '</li>';
+    }).join("");
+
+    return true;
+  }
+
+  function showStaleNote() {
+    var note = document.getElementById("cal-note");
+    if (note) note.hidden = false;
+  }
+
+  if (!SHEET_CSV_URL) { showStaleNote(); applyLang(); return; }
+
+  var timeout = setTimeout(showStaleNote, 6000);
+
+  fetch(SHEET_CSV_URL, { cache: "no-store" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (text) {
+      clearTimeout(timeout);
+      var rows = parseCSV(text);
+      if (rows.length > 1) rows = rows.slice(1);
+      if (!render(rows)) showStaleNote();
+      applyLang();
+    })
+    .catch(function () {
+      clearTimeout(timeout);
+      showStaleNote();
+      applyLang();
+    });
+
+  applyLang();
+})();
+</script>
+
+</body>
+</html>
