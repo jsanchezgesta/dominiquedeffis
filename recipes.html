@@ -89,7 +89,13 @@
   .nav { display: flex; gap: 1.6rem; justify-content: flex-end; font-size: .88rem; letter-spacing: .04em; }
   .nav a { text-decoration: none; color: var(--prune-soft); }
   .nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
-  @media (max-width: 760px) { .nav { display: none; } .top .wrap { grid-template-columns: 1fr auto 1fr; } }
+  .nav-mobile { display: none; text-decoration: none; color: var(--prune-soft); font-size: .82rem; letter-spacing: .04em; justify-self: end; }
+  .nav-mobile:hover { color: var(--ink); }
+  @media (max-width: 760px) {
+    .nav { display: none; }
+    .nav-mobile { display: block; }
+    .top .wrap { grid-template-columns: 1fr auto 1fr; }
+  }
 
   /* ---------- page header ---------- */
   .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 0; text-align: center; }
@@ -177,6 +183,7 @@
       <a href="index.html#calendrier" data-en="Calendar">Calendrier</a>
       <a href="index.html#reserver" data-en="Reserve">Réserver</a>
     </nav>
+    <a class="nav-mobile" href="index.html#reserver" data-en="Reserve">Réserver</a>
   </div>
 </header>
 
