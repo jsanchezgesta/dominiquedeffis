@@ -96,35 +96,35 @@ of the design and an accepted tradeoff.
 
 ## Photography
 
-`assets/images/` is empty. The mosaic currently renders grey placeholder blocks,
-each captioned with the shot it wants:
+`assets/images/` holds real photos now, sourced from Dominique's own Google Drive
+and Instagram (confirmed as hers, not stock). The homepage mosaic (7 shots) and the
+about-section portrait are all real. Alt text is bilingual via `data-alt-en` /
+`data-alt-fr` on the `<img>` (the toggle script handles this — see the script's
+`register()`/`applyLang()`).
 
-1. Wide: the kitchen mid-service, window light
-2. Close: hands lattice-cutting pastry
-3. The finished pâté en croûte, sliced
-4. The table laid, glasses poured
-5. Dominique explaining to two guests
-6. Detail: soufflé coming out of the oven
-7. The market, early morning
-
-Plus one vertical portrait of Dominique for the about section.
-
-To swap in real photos: replace each `.shot` div's contents with an `<img>` using
-`object-fit: cover`, keep the grid spans, and keep alt text bilingual-aware (alt is
-not currently handled by the toggle — if this matters, extend the script rather than
-hardcoding one language).
+Do not add stock photography (Unsplash, Wikimedia Commons, etc.) back in. If a new
+section needs a photo and no real one exists yet, use the honest placeholder
+treatment instead (dashed border + bracketed text, as used in the reviews section)
+rather than a generic stand-in.
 
 ## Content status — what is real and what is invented
 
-Currently **invented** and awaiting Dominique's real answers:
-- Prices (450 € / 650 € / 3 200 €)
-- The 7th arrondissement
-- All dish names and calendar dates
-- Email address and phone number
-- Her biography and years of experience
+**Confirmed real:**
+- Her name, Paris, high price point, elaborate dishes, the two audiences above
+- Phone (+33 6 31 34 40 04) and address (Le Havre & Paris)
+- All dish names and photos on the repertoire page (`recipes.html`) — sourced from
+  her own Drive folders (Salée / Sucrée / Table), not invented
+- Calendar dates — live from her Google Sheet (see "The calendar" above)
+- Her portrait and the homepage mosaic photos
 
-**Confirmed:** her name (spelling of "Deffis" still to be double-checked), Paris,
-high price point, elaborate dishes, the two audiences above.
+**Still invented** and awaiting her real answers:
+- Prices (450 € / 650 € / 3 200 €)
+- Email address (bonjour@dominiquedeffis.com)
+- Her biography and years of experience (the "Qui vous reçoit" prose)
+- The dish *descriptions* on the repertoire page — the dishes and photos are real,
+  but the technique-focused sentences under each one are written copy, not her words
+- Guest reviews — the "Ce qu'on en dit" section is still bracketed placeholder,
+  waiting on real testimonials
 
 Do not present invented content to Dominique as though it were drafted from her
 information. Flag it.
