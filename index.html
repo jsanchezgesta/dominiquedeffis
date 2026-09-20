@@ -444,7 +444,7 @@
    Sheet columns, in this order, with a header row:
    date (YYYY-MM-DD) | plat_fr | plat_en | places | reservees
 ------------------------------------------------------------------- */
-var SHEET_CSV_URL = "";
+var SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAKZwlJA7mnfPlzGLvxZz7fDgYgAom6VBX9R6zYTuSfhoC4MfvqfCE-umxbFZPzBlWgaJSw6MWS0sy/pub?gid=0&single=true&output=csv";
 
 (function () {
   var currentLang = "fr";
@@ -526,7 +526,7 @@ var SHEET_CSV_URL = "";
           fr: (r[1] || "").trim(),
           en: (r[2] || "").trim(),
           total: parseInt(r[3], 10),
-          taken: parseInt(r[4], 10)
+          taken: String(r[4] || "").trim() === "" ? 0 : parseInt(r[4], 10)
         };
       })
       .filter(function (x) {
@@ -534,12 +534,13 @@ var SHEET_CSV_URL = "";
         var d = new Date(x.iso + "T00:00:00");
         return !isNaN(d) && d >= today;
       })
-      .sort(function (a, b) { return a.iso < b.iso ? -1 : 1; });
+      .sort(function (a, b) { return a.iso < b.iso ? -1 : 1; })
+      .slice(0, 8);
 
     if (!items.length) return false;
 
     list.innerHTML = items.map(function (x) {
-      var left = (isFinite(x.total) && isFinite(x.taken)) ? Math.max(0, x.total - x.taken) : null;
+      var left = isFinite(x.total) ? Math.max(0, x.total - (isFinite(x.taken) ? x.taken : 0)) : null;
       var etatFr, etatEn, cls = "etat";
       if (left === null) { etatFr = ""; etatEn = ""; }
       else if (left === 0) { etatFr = "Complet"; etatEn = "Full"; cls += " complet"; }
