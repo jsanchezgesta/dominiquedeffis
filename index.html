@@ -205,6 +205,27 @@
   }
   .portrait span { position: relative; }
 
+  /* avis */
+  .avis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+  @media (max-width: 860px) { .avis-grid { grid-template-columns: 1fr; } }
+  .avis-card {
+    border: 1px dashed var(--rule); padding: 1.8rem 1.6rem;
+    position: relative; overflow: hidden;
+  }
+  .avis-card::before {
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(154,123,69,.08) 22px 23px);
+  }
+  .avis-card blockquote {
+    margin: 0; position: relative;
+    font-family: "Bodoni Moda", Didot, Georgia, serif; font-style: italic;
+    font-size: 1.12rem; line-height: 1.5; color: var(--prune-soft);
+  }
+  .avis-card figcaption {
+    position: relative; margin-top: 1rem;
+    font-size: .8rem; letter-spacing: .05em; color: var(--brass);
+  }
+
   /* reserver */
   .book { background: var(--prune); color: var(--paper); text-align: center; }
   :root:not([data-theme="light"]) .book { color: var(--paper); }
@@ -360,6 +381,27 @@
         <p data-en="Thirty years in Parisian kitchens, and fifteen teaching in this one. Trained in the classical repertoire and still faithful to it — the sauces, the pastry, the things that take time and are worth it.">Trente ans dans les cuisines parisiennes, dont quinze à enseigner dans celle-ci. Formée au répertoire classique et fidèle à ce répertoire : les sauces, les pâtes, tout ce qui demande du temps et le mérite.</p>
         <p data-en="Guests come from the neighbourhood and from a long way further. The workshop runs in French and in English, and nobody has ever been left standing at the back.">Les convives viennent du quartier et de bien plus loin. L'atelier se tient en français et en anglais, et personne n'est jamais resté spectateur au fond de la pièce.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="wrap centered">
+    <p class="kicker" data-en="What guests say">Ce qu'on en dit</p>
+    <h2 class="big" data-en="Three quotes, to be filled in">Trois avis, à venir</h2>
+    <div class="avis-grid" style="text-align:left">
+      <figure class="avis-card">
+        <blockquote data-en="[Guest quote to add — real feedback only, not written by us]">[Citation d'un invité à ajouter — uniquement un vrai retour, jamais rédigé par nous]</blockquote>
+        <figcaption data-en="— First name, to confirm">— Prénom, à confirmer</figcaption>
+      </figure>
+      <figure class="avis-card">
+        <blockquote data-en="[Guest quote to add — real feedback only, not written by us]">[Citation d'un invité à ajouter — uniquement un vrai retour, jamais rédigé par nous]</blockquote>
+        <figcaption data-en="— First name, to confirm">— Prénom, à confirmer</figcaption>
+      </figure>
+      <figure class="avis-card">
+        <blockquote data-en="[Guest quote to add — real feedback only, not written by us]">[Citation d'un invité à ajouter — uniquement un vrai retour, jamais rédigé par nous]</blockquote>
+        <figcaption data-en="— First name, to confirm">— Prénom, à confirmer</figcaption>
+      </figure>
     </div>
   </div>
 </section>
